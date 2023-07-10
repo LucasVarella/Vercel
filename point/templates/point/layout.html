@@ -1,0 +1,123 @@
+{% load static %}
+{% load cache %}
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="{% static 'point/css/global.css' %}">
+        <link rel="stylesheet" href="{% static 'point/css/aside.css' %}">
+        <script src="{% static 'point/js/global.js' %}"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Encode+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,600,0,200" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css">
+
+        {% block head %}
+        {% endblock %}
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="popover"]').popover();
+                
+                if ($('#icon-more').click(function(){
+                    $('[data-toggle="popover"]').popover('hide');
+                }));
+
+                $('body').on('hidden.bs.popover', function (e) {
+                    $(e.target).data("bs.popover").inState.click = false;
+                });
+            });
+        </script>
+
+    </head>
+    <body>
+        <div id="content-page">
+            <aside class="" data-status="">
+                <div id="aside-div">
+                    <div id="aside-more" class="flex">
+                        <span id="icon-more" data-clicked="" style="font-size: 25px; cursor: pointer;" class="material-symbols-outlined">reorder</span>
+                    </div>
+                    <div id="aside-avatar">
+                        <img class="circular-img" src="{% static 'point/imgs/img_avatar.jpg' %}" alt="Avatar">  
+                        <div id="aside-avatar-infos">
+                            <h4>Lucas Varella</h4>
+                            <span id="avatar-name" style="font-size: 14px; color: #70777b;">Desenvolvedor FullStack Sênior</span>
+                        </div>
+                    </div>
+                    <div id="aside-components">
+                        {% if user != admin %}
+                            <a href="/">
+                                {% if page == 'index' %}
+                                    <div class="component-sidebar flex active">
+                                {% else %}
+                                    <div class="component-sidebar flex">
+                                {% endif %}
+                                        <span style="font-size: 30px; cursor: pointer;" class="material-symbols-outlined">alarm</span>
+                                        <span class="cs-description">Bater ponto</span>
+                                </div>
+                            </a>
+                            <a href="/correction">
+                                {% if page == 'correction' %}
+                                    <div class="component-sidebar flex active">
+                                {% else %}
+                                    <div class="component-sidebar flex">
+                                {% endif %}
+                                        <span style="font-size: 30px; cursor: pointer;" class="material-symbols-outlined">free_cancellation</span>
+                                        <span class="cs-description">Corrigir ausência</span>
+                                </div>
+                            </a>
+                            <a href="/sheet">
+                                {% if page == 'sheet' %}
+                                    <div class="component-sidebar flex active">
+                                {% else %}
+                                    <div class="component-sidebar flex">
+                                {% endif %}
+                                        <span style="font-size: 30px; cursor: pointer;" class="material-symbols-outlined">home_storage</span>
+                                        <span class="cs-description">Folha Mensal</span>
+                                </div>
+                            </a>
+                            <a href="/bank">
+                                {% if page == 'bank' %}
+                                    <div class="component-sidebar flex active">
+                                {% else %}
+                                    <div class="component-sidebar flex">
+                                {% endif %}
+                                        <span style="font-size: 30px; cursor: pointer;" class="material-symbols-outlined">safety_check</span>
+                                        <span class="cs-description">Banco de horas</span>
+                                </div>
+                            </a>
+                        {% else %}
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </aside>
+            <div id="main">
+                <div id="header">
+                    <span id="dot-header" style="color: white; width: 30px;">.</span>
+                    <span id="salutation">Welcome back, {{request.user.username}}</span>
+                    <a trigger="focus" data-toggle="popover" data-placement="bottom" data-content="<div class='item-popover'><a href='/logout'>Logout</a></div>" data-html="true"><span style="font-size: 30px; cursor: pointer;" class="material-symbols-outlined">manage_accounts</span></a> 
+                </div>
+                <div id="content-main">
+                    {% block main %}
+                    {% endblock %}
+
+                </div>
+            </div>
+        </div>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

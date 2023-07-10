@@ -1,0 +1,304 @@
+/* COMUM CARACTERISTICS */
+aside{
+    /* background-color: #F6F7F9; */
+    background-color: black;
+    box-shadow: 4px 2px 10px 0px rgba(3, 3, 3, 0.2);
+    height: 100vh;
+    z-index: 1;
+    overflow: hidden;
+    opacity: 0;
+
+}
+
+aside a span{
+    color: #23527c;
+}
+
+aside a:hover span{
+    color: white;
+}
+
+aside a:hover{
+    text-decoration: none;
+}
+
+aside a:active{
+    text-decoration: none;
+}
+
+#aside-div{
+    height: 100vh;
+}
+
+#aside-avatar{
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    padding: 35px 0px;
+    height: 110px;
+    align-items: center;
+    min-width: 243px;
+}
+
+
+.component-sidebar{
+    height: 62px;
+    /* background-color: white; */
+    border-radius: 8px;
+    margin: 5px 0px;
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px; */
+    cursor: pointer;
+    user-select: none;
+    transition: 0.1s;
+    overflow: hidden;
+    color: black;
+}
+
+.component-sidebar span{
+    white-space: nowrap;
+    color: #70777b;
+}
+
+.component-sidebar:hover{
+    transform: scale(1.01);
+    background-color: #0f0f0f63;
+    color: white;
+}
+
+.active{
+    background-color: #0f0f0feb;
+}
+
+.active:hover{
+    background-color: #0f0f0feb !important;
+    transform: scale(1) !important;
+}
+
+.active span{
+    color: white;
+}
+
+#aside-more{
+    height: 50px;
+    z-index: 1;
+    user-select: none;
+    color: white;
+}
+
+/* OPENED */
+.aside-open{
+    width: 25%;
+    opacity: 1;
+}
+
+.aside-open #aside-div{
+    padding: 15px;
+}
+
+.aside-open #aside-more{
+    justify-content: right;
+}
+
+.aside-open .component-sidebar{
+
+
+}
+
+.aside-open .component-sidebar span{
+    padding-left: 15px;
+}
+
+.aside-open #aside-avatar {
+
+}
+
+.aside-open #aside-avatar img{
+    width: 90px;
+    height: 90px;
+    min-width: 90px;
+    min-height: 90px;
+    border: 2px solid white;
+}
+
+.aside-open #aside-avatar #aside-avatar-infos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    min-width: 50%;
+    text-align: center;
+
+}
+
+.aside-open #aside-avatar #aside-avatar-infos h4{
+    margin: 4px 0px;
+    color: white;
+}
+
+
+
+.aside-open-animation{
+    animation-name: open-aside;
+    animation-duration: 0.1s;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+    animation-timing-function:linear;
+    
+}
+
+.component-open-animation span{
+    animation-name: open-components;
+    animation-duration: 0.1s;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+    animation-timing-function:linear;
+    
+}
+
+
+
+@keyframes open-aside {
+    from {
+        min-width: 5%;
+        width: 5%;
+    }
+    to {
+        width: 25%;
+        
+    }
+}
+
+@keyframes open-components {
+    from {
+        padding-left: 4px;
+    }
+    to {
+        padding-left: 15px;
+        
+    }
+}
+
+/* CLOSED */
+.aside-close{
+    width: 5%;
+    opacity: 1;
+}
+
+.aside-close #aside-div{
+    padding: 15px;
+
+}
+
+.aside-close #aside-more{
+    justify-content: center;
+}
+
+.aside-close #aside-avatar{
+    opacity: 0;
+    z-index: 0;
+}
+
+.aside-close .component-sidebar{
+    display: flex;
+    justify-content: center;
+}
+
+.aside-close .component-sidebar .cs-description{
+    display: none;
+}
+
+
+.aside-close-animation{
+    animation-name: close-aside;
+    animation-duration: 0.1s;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+    animation-timing-function:linear;
+    
+}
+
+
+@keyframes close-aside {
+    from {
+        width: 25%;
+    }
+    to {
+        width: 5%;
+    }
+}
+
+
+@media (max-width: 600px){
+    aside
+     {
+      position: absolute;
+     }
+
+     .aside-open{
+        width: 100% !important;
+        display: block !important;
+     }
+     
+     .aside-close{
+        width: 0px !important;
+     }
+
+     .aside-open #aside-more{
+        justify-content: center;
+        color: white;
+     }
+     #aside-more{
+        padding-left: 25px;
+     }
+  
+     #aside-more{
+        position: fixed;
+        color: black;
+     }
+
+     .aside-open #aside-div{
+        padding: 15px 5px;
+     }
+
+     .aside-open .component-sidebar{
+        flex-direction: row;
+     }
+
+     #aside-components{
+        padding: 0px 15px;
+     }
+
+     @keyframes open-aside {
+        from {
+            min-width: 0px;
+            width: 0px;
+            opacity: 0;
+        }
+        to {
+            width: 100%;
+            opacity: 1;
+        }
+    }
+
+    @keyframes open-components {
+        from {
+            width: 100%;
+            opacity: 0;
+            
+        }
+        to {
+            width: 100%;
+            opacity: 1;
+        }
+    }
+
+    @keyframes close-aside {
+        from {
+            width: 100%;
+        }
+        to {
+            min-width: 0px;
+            width: 0px;
+        }
+    }
+  }

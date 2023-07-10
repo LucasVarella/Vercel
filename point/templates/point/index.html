@@ -1,0 +1,139 @@
+{% extends 'point/layout.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block main %}
+    <div class="point-page flex">
+        <div>
+            <h2>{{date_time_now}}</h2>
+        </div>
+        <div class="flex point-items">
+
+            <!-- Entry -->
+            {% if types.E == False %}
+                <div id="entry" class="point">
+            {% else %}
+                <div class="point hited hited-entry">
+            {% endif %}
+                    <div class="span-number">
+                        <span>1</span>
+                    </div>
+                    <div class="span-name">
+                        <span>Entry</span>
+                    </div>
+                    <div class="span-icon">
+                        <span style="font-size: 22px; float: left; margin-top: 30px; font-weight: 400;">
+                            {% if types.E != False %}
+                                {{types.E}}
+                            {%endif%}
+                        </span>
+                        <span class="material-symbols-outlined">login</span>
+                    </div>
+                </div>
+
+            <!-- Pause -->
+            {% if types.P == False %}
+                <div id="pause" class="point">
+            {% else %}
+                <div class="point hited hited-pause">
+            {% endif %}
+                <div class="span-number">
+                    <span>2</span>
+                </div>
+                <div class="span-name">
+                    <span>Pause</span>
+                </div>
+                <div class="span-icon">
+                    <span style="font-size: 22px; float: left; margin-top: 30px; font-weight: 400;">
+                        {% if types.P != False %}
+                            {{types.P}}
+                        {%endif%}
+                    </span>
+                    <span class="material-symbols-outlined">emoji_food_beverage</span>
+                </div>
+            </div>
+        </div>
+        <div class="flex point-items">
+
+            <!-- Return -->
+            {% if types.R == False %}
+                <div id="return" class="point">
+            {% else %}
+                <div class="point hited hited-return">
+            {% endif %}
+                <div class="span-number">
+                    <span>3</span>
+                </div>
+                <div class="span-name">
+                    <span>Return</span>
+                </div>
+                <div class="span-icon">
+                    <span style="font-size: 22px; float: left; margin-top: 30px; font-weight: 400;">
+                        {% if types.R != False %}
+                            {{types.R}}
+                        {%endif%}
+                    </span>
+                    <span class="material-symbols-outlined">undo</span>
+                </div>
+            </div>
+
+             <!-- Quit -->
+            {% if types.Q == False %}
+                <div id="exit" class="point">
+            {% else %}
+                <div class="point hited hited-exit">
+            {% endif %}
+                <div class="span-number">
+                    <span>4</span>
+                </div>
+                <div class="span-name">
+                    <span>Exit</span>
+                </div>
+                <div class="span-icon">
+                    <span style="font-size: 22px; float: left; margin-top: 30px; font-weight: 400;">
+                        {% if types.Q != False %}
+                            {{types.Q}}
+                        {%endif%}
+                    </span>
+                    <span class="material-symbols-outlined">logout</span>
+                </div>
+            </div>
+        </div>
+            <div id="registers" class="flex">
+                Week points
+            </div>
+            
+    </div>
+    <div id="registers-points">
+        <div style="display: flex; align-items: center;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                {% for day in week_points %}
+                <div class="registers-day">
+                    <div class="day-title">{{day.MONTH}} {{day.DAY}}, {{day.NAME}}</div>
+                    <div class="registers-item" style="border-left: 5px solid #5BB867;">{% if day.E != False %}{{day.E.time|slice:5}} {% else %} — {% endif %}</div>
+                    <div class="registers-item" style="border-left: 5px solid #76A1E8;">{% if day.P != False %}{{day.P.time|slice:5}} {% else %} — {% endif %}</div>
+                    <div class="registers-item" style="border-left: 5px solid #F2E37B;">{% if day.R != False %}{{day.R.time|slice:5}} {% else %} — {% endif %}</div>
+                    <div class="registers-item" style="border-left: 5px solid #E97777;">{% if day.Q != False %}{{day.Q.time|slice:5}} {% else %} — {% endif %}</div>
+                </div>
+                {% endfor %}
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; width: 10%; align-items: end;">
+                <div id="close-registers"><span class="material-symbols-outlined">close</span></div>
+                <div style="font-size: 14px">
+                    <div class="registers-item" style="border-left: 5px solid #5BB867;">Entry</div>
+                    <div class="registers-item" style="border-left: 5px solid #76A1E8;">Pause</div>
+                    <div class="registers-item" style="border-left: 5px solid #F2E37B;">Return</div>
+                    <div class="registers-item" style="border-left: 5px solid #E97777;">Exit</div>
+                </div>
+                <span>.</span>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}

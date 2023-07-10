@@ -1,0 +1,54 @@
+                <div id="top-side" class="flex">
+                    <span id="icon-more" data-clicked="" style="font-size: 25px; cursor: pointer;" class="material-symbols-outlined">reorder</span>
+                </div>
+                <div class="avatar">
+                    <div id="avatar-infos" style="width: 100%;">
+                        <img class="circular-img" src="{% static 'point/imgs/img_avatar.jpg' %}" alt="Avatar">  
+                        <h4>Lucas Varella</h4>
+                        <span id="avatar-name" style="font-size: 14px; color: #6c8aa2;"></span>
+                    </div>        
+                </div>
+
+                {% if user != admin %}
+                    <a href="/">
+                        {% if page == 'index' %}
+                            <div class="component-sidebar flex active">
+                        {% else %}
+                            <div class="component-sidebar flex">
+                        {% endif %}
+                            <div class="flex item">
+                                <span style="font-size: 30px; cursor: pointer;" class="material-symbols-outlined">alarm</span>
+                                <span class="pl">Bater ponto</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="component-sidebar flex">
+                            <div class="flex item">
+                                <span style="font-size: 30px; cursor: pointer;" class="material-symbols-outlined">free_cancellation</span>
+                                <span class="pl">Registrar ausência</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="component-sidebar flex">
+                            <div class="flex item">
+                                <span style="font-size: 30px; cursor: pointer;" class="material-symbols-outlined">home_storage</span>
+                                <span class="pl">Folha Mensal</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/bank">
+                        {% if page == 'bank' %}
+                            <div class="component-sidebar flex active">
+                        {% else %}
+                            <div class="component-sidebar flex">
+                        {% endif %}
+                            <div class="flex item">
+                                <span style="font-size: 30px; cursor: pointer;" class="material-symbols-outlined">safety_check</span>
+                                <span class="pl">Banco de horas</span>
+                            </div>
+                        </div>
+                    </a>
+                {% else %}
+                {% endif %}
